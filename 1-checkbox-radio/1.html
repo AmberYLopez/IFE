@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>改变radio默认样式</title>
+    <style>
+        input[type="radio"], input[type="checkbox"] {
+            display: none;
+        }
+
+        input[type="radio"] + label, input[type="checkbox"] + label {
+            position: relative;
+            padding-left: 30px;
+            line-height: 20px;
+            font-weight: normal;
+            margin-left: 2px;
+        }
+
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        input[type="radio"] + label::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            border: 1px solid #cecece;
+            position: absolute;
+            left: 0;
+        }
+
+        input[type="radio"]:checked + label::before {
+            border: 1px solid #D73E33;
+        }
+
+        input[type="radio"]:checked + label::after {
+            top: 5px;
+            left: 5px;
+            content: "";
+            background-color: #D73E33;
+            width: 12px;
+            color: #D73E33;
+            height: 12px;
+            border-radius: 12px;
+            position: absolute;
+            vertical-align: middle;
+        }
+
+        input[type="checkbox"] + label::before {
+            position: absolute;
+            top: 40px;
+            left: -35px;
+            content: "";
+            width: 20px;
+            height: 20px;
+            border: 1px solid #cecece;
+            font-size: 17px;
+            color: #D73E33;
+            text-align: center;
+            font-weight: 700;
+            line-height: 17px;
+
+        }
+
+        input[type="checkbox"]:checked + label::before {
+            top: 40px;
+            left: -35px;
+            content: "\2713";
+            border: 1px solid #D73E33;
+            position: absolute;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<dl>
+    <dd>
+        <input id="Type1" name="Type" type="radio" value="1" checked="checked">
+        <label for="Type1" id="radio1"></label>
+
+        <input type="checkbox" name="Type" value="1" checked="checked">
+        <label for="Type1"></label>
+
+        <input id="Type2" name="Type" type="radio" value="2">
+        <label for="Type2" id="radio2"></label>
+
+        <input type="checkbox" name="Type" value="2">
+        <label for="Type2"></label>
+    </dd>
+    <dd></dd>
+</dl>
+<script>
+    window.onload = function () {
+        var rad1 = document.getElementById("radio1");
+        var rad2 = document.getElementById("radio2");
+        var input = document.getElementsByTagName("input");
+        rad1.addEventListener("click", function () {
+            for (var i = 0; i < input.length; i++) {
+                input[i].checked = false;
+            }
+            input[1].checked = true;
+        });
+        rad2.addEventListener("click", function () {
+            for (var i = 0; i < input.length; i++) {
+                input[i].checked = false;
+            }
+            input[3].checked = true;
+        })
+    }
+</script>
+</body>
+</html>
